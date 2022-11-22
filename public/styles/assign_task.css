@@ -1,0 +1,67 @@
+main {
+  width: 90%;
+  margin: 2.5rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+#assign-task-div {
+  width: 40%;
+}
+
+#assign-task-div #form-div {
+  width: 80%;
+  background-color: #fff;
+  padding: 1rem;
+  color: #1b3231;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+#assign-task-div #form-div:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  height: 3.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.form-item label {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.form-item select {
+  padding: 4px;
+  width: 60%;
+  font-size: 1.2rem;
+  color: #506162;
+  background-color: #e8f0fe;
+}
+
+.form-item select:focus {
+  padding: 4px;
+}
+
+#submit-btn {
+  width: fit-content;
+  margin: 1rem auto;
+  padding: 7px 10px;
+  border: 1px solid #1b3231;
+  color: #1b3231;
+  border-radius: 4px;
+  background-color: #fff;
+
+  font-size: 1rem;
+}
+
+#submit-btn:hover {
+  background-color: #1b3231;
+  color: #fff;
+}

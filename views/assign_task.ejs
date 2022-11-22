@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/home.css" />
+    <link rel="stylesheet" href="/styles/assign_task.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Reviewsnap</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="logo">Reviewsnap</h2>
+      <ul id="header-ul">
+        <% if (locals.employee) { %>
+        <li><a href="/employees/assign-task">Assign-Task</a></li>
+        <li><a href="/employees/all-employees">Employees</a></li>
+        <% }%>
+        <li><a href="/">Reviews</a></li>
+        <% if (locals.employee) { %>
+        <li><a href="/auth/logout">Logout</a></li>
+        <% } else{ %>
+        <li><a href="/auth/login">Login</a></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <!-- <h1><%= locals.employee %></h1> -->
+      <section id="assign-task-div">
+        <div id="form-div">
+          <h2 style="font-size: 2rem; text-align: center">Assign Review</h2>
+          <p
+            id="message"
+            style="
+              text-align: center;
+              margin-top: 1rem;
+              border-radius: 3px;
+              display: none;
+              padding: 0.5rem;
+            "
+          ></p>
+          <form
+            id="assign-task-form"
+            method="POST"
+            action="/employees/assign-task"
+          >
+            <div class="form-item">
+              <label>From : </label>
+              <select id="from-select-box" name="from">
+                <option disabled selected>Select An Employee</option>
+                <% for(const employee of employees) { %>
+                <option value="<%= employee.username %>">
+                  <%= employee.username %>
+                </option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-item">
+              <label>For : </label>
+              <select id="for-select-box" name="for">
+                <option disabled selected>Select An Employee</option>
+                <% for(const employee of employees) { %>
+                <option value="<%= employee.username %>">
+                  <%= employee.username %>
+                </option>
+                <% } %>
+              </select>
+            </div>
+            <div id="submit" class="form-item">
+              <input id="submit-btn" type="submit" value="Assign Review" />
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="/scripts/assign_task.js"></script>
+  </body>
+</html>

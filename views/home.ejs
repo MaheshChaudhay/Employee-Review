@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/styles/home.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Reviewsnap</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="logo">Reviewsnap</h2>
+      <ul id="header-ul">
+        <% if (locals.employee.isAdmin) { %>
+        <li><a href="/employees/assign-task">Assign-Task</a></li>
+        <li><a href="/employees/all-employees">Employees</a></li>
+        <% }%>
+        <li><a href="/">Reviews</a></li>
+        <% if (locals.employee) { %>
+        <li><a href="/auth/logout">Logout</a></li>
+        <% } else{ %>
+        <li><a href="/auth/login">Login</a></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <h2 class="heading" style="margin-top: 1rem; margin-bottom: 1rem">
+        Pending Reviews
+      </h2>
+      <ul id="pending-reviews-list">
+        <% for(const pendingReview of employee.pendingReviews) { %>
+        <li id="<%= pendingReview._id %>">
+          <div class="prending-review-div">
+            <h3>
+              For :
+              <span style="text-transform: capitalize; margin-left: 5px"
+                ><%= pendingReview.for.username %></span
+              >
+            </h3>
+            <form
+              class="review-form"
+              method="POST"
+              action="/employees/create-review/<%= pendingReview._id %>"
+            >
+              <div class="form-item">
+                <input
+                  type="hidden"
+                  name="fromReview"
+                  value="<%= pendingReview.from.username %>"
+                />
+                <h4 style="margin-right: 10px">Feedback :</h4>
+                <textarea
+                  name="feedback"
+                  rows="4"
+                  cols="42"
+                  placeholder="Give Your Feedback"
+                ></textarea>
+              </div>
+              <div
+                class="star-rating form-item"
+                data-id="<%= pendingReview._id %>"
+              >
+                <h4 style="margin-right: 10px">Rating :</h4>
+                <i class="fa-regular fa-star" data-rating="1"></i>
+                <i class="fa-regular fa-star" data-rating="2"></i>
+                <i class="fa-regular fa-star" data-rating="3"></i>
+                <i class="fa-regular fa-star" data-rating="4"></i>
+                <i class="fa-regular fa-star" data-rating="5"></i>
+                <input
+                  type="hidden"
+                  name="rating"
+                  class="rating-value"
+                  value="1.56"
+                />
+              </div>
+              <div class="form-item submit-btn-div">
+                <input class="submit-btn" type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+      <div id="right-div">
+        <h2 class="heading">Your Reviews</h2>
+        <ul id="reviews-list">
+          <% for(review of employee.reviews) { %>
+          <li class="review-li">
+            <div class="review">
+              <h3 style="margin-bottom: 0.8rem">
+                From : <%= review.content.from.username %>
+              </h3>
+              <p style="margin-bottom: 0.8rem; font-weight: bold">
+                <b style="font-size: 20px">Feedback : </b><%=
+                review.content.feedback %>
+              </p>
+              <h3 style="margin-bottom: 0.8rem">
+                Rating : <% for( let index = 0; index < review.content.rating;
+                index++ ) { %>
+                <i class="fa-solid fa-star"></i>
+                <% } %>
+              </h3>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </main>
+    <script src="/scripts/home.js"></script>
+  </body>
+</html>

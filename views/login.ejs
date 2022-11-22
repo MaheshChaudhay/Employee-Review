@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/signup.css" />
+    <title>Reviewsnap</title>
+  </head>
+  <body>
+    <div id="form-div">
+      <h2>Login</h2>
+      <form method="POST" action="/auth/login">
+        <div class="form-item">
+          <label class="form-item-label" for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            required
+          />
+        </div>
+        <div class="form-item">
+          <label class="form-item-label" for="Password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+        <div class="form-item">
+          <input id="submit-btn" type="submit" value="Login" />
+        </div>
+        <div class="form-item" id="signup-div">
+          <span>Don't Have Account</span>
+          <a id="signup-btn" href="/auth/signup">SignUp</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

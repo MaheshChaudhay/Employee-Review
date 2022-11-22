@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #f2f7fa;
+}
+
+header {
+  display: flex;
+  padding: 0.7rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1c212d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#logo {
+  width: 15%;
+  font-size: 1.8rem;
+  color: #f7dc5a;
+}
+
+#header-ul {
+  list-style: none;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#header-ul li {
+  font-weight: bold;
+  margin-right: 1.2rem;
+}
+
+#header-ul li a {
+  color: rgb(223, 219, 219);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+#header-ul li a:hover {
+  color: #f7dc5a;
+  border-bottom: 2px solid #f7dc5a;
+}
+
+.fa-solid {
+  color: #f7dc5a;
+}
+
+#left-div {
+  border: 2px solid red;
+}
+
+#right-div {
+  border: 2px dsahed green;
+}
+
+#pending-reviews-list,
+#reviews-list {
+  /* border: 1px solid black; */
+  display: flex;
+  width: 96vw;
+  list-style: none;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
+  color: #1b3231;
+}
+
+#pending-reviews-list li,
+#reviews-list li {
+  /* border: 2px dashed brown; */
+  background-color: #fff;
+  width: 42%;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-top: 1.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+.form-item {
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.form-item textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #f2f7fa;
+}
+
+.submit-btn-div {
+  display: block;
+  text-align: center;
+}
+
+.submit-btn {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #1b3231;
+  border-radius: 5px;
+}
+
+.submit-btn:hover {
+  background-color: #1b3231;
+  color: #fff;
+}
+
+.fa-star {
+  font-size: 1.3rem;
+  margin-right: 5px;
+}
+
+#reviews-list li {
+  border: 2px solid #55ab8e;
+  color: #1b3231;
+  border-top: 2px solid #55ab8e;
+  border-bottom: 2px solid #55ab8e;
+}
+
+.heading {
+  text-align: center;
+  color: #1b3231;
+  font-size: 2rem;
+}

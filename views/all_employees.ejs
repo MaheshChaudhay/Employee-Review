@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/styles/home.css" />
+    <link rel="stylesheet" href="/styles/all_employees.css" />
+    <title>Reviewsnap</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="logo">Reviewsnap</h2>
+      <ul id="header-ul">
+        <% if (locals.employee.isAdmin) { %>
+        <li><a href="/employees/assign-task">Assign-Task</a></li>
+        <li><a href="/employees/all-employees">Employees</a></li>
+        <% }%>
+        <li><a href="/">Reviews</a></li>
+        <% if (locals.employee) { %>
+        <li><a href="/auth/logout">Logout</a></li>
+        <% } else{ %>
+        <li><a href="/auth/login">Login</a></li>
+        <% } %>
+      </ul>
+    </header>
+    <div id="add-btn-div">
+      <a href="/employees/add-employee" id="add-btn">Add Employee</a>
+    </div>
+    <main id="employees-section">
+      <% for(const employee of employees) { %>
+      <div class="card" id="<%= employee._id %>">
+        <img
+          src="https://www.w3schools.com/howto/img_avatar.png"
+          alt="Avatar"
+          style="width: 100%; height: 200px; border-radius: 50%"
+        />
+        <div class="container">
+          <h4 style="margin: 4px auto; font-size: 1.4rem">
+            <b><%= employee.username %></b>
+          </h4>
+          <p style="margin: 4px auto"><%= employee.email %></p>
+          <p style="margin: 4px auto">Password : <%= employee.password %></p>
+        </div>
+        <div class="card-controls">
+          <a href="/employees/edit/<%= employee._id %>"
+            ><i class="fa-solid fa-user-pen" style="color: #10292a"></i
+          ></a>
+          <a
+            class="delete-emp-btn"
+            href="/employees/employee-delete/<%= employee._id %>"
+            ><i class="fa-solid fa-user-minus" style="color: #10292a"></i
+          ></a>
+          <% if (employee.isAdmin) { %>
+          <span style="color: #10292a">Admin</span>
+          <% } else {%>
+          <a
+            href="/employees/make-admin/<%= employee._id %>"
+            style="color: #10292a; font-size: 1rem; font-weight: 550"
+            >Make Admin</a
+          >
+          <% } %>
+        </div>
+      </div>
+
+      <% } %>
+    </main>
+    <script src="/scripts/all_employees.js"></script>
+  </body>
+</html>
